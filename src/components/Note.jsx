@@ -1,5 +1,5 @@
 import React from "react";
-import notes from "./notes";
+import notes from "../notes";
 
 function Note(){
     return (notes.map(note => 
