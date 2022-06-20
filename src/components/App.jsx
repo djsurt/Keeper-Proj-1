@@ -2,11 +2,13 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
+import CreateArea from "./CreateArea";
 
 function App(){
     return <div>
         <Header></Header>
-        <Note></Note>
+        <CreateArea></CreateArea>
+        <Note key={1} title="Note title" content="Note content" />
         <Footer></Footer>
     </div>;
 }
