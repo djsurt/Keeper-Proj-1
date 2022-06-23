@@ -10,8 +10,7 @@ function App(){
 
     return <div>
         <Header></Header>
-        <CreateArea notes = {notes}></CreateArea>
-        <Note key={1} title="Note title" content="Note content" />
+        <CreateArea changeNotes = {setNotes} notes = {notes}></CreateArea>
         <Footer></Footer>
     </div>;
 }

@@ -1,32 +1,57 @@
 import React, { useState } from "react";
+import notes from "../notes";
 import Note from "./Note";
 
 function CreateArea(props) {
 
-  const [note, setNote] = useState({
+  let [note, setNote] = useState({
     title:"",
     content:""
   });
 
-  function handleClick(){
-
+  function handleClick(event){
+    props.changeNotes((prevValue) => {
+      return [...prevValue, note]
+    });
+    setNote({
+      title:"",
+      content:""
+    });
+    notes.map((note)=>{
+      return <Note title={note.title} content={note.content}/>
+    });
   }
 
   function handleChange(event){
-    var [name, value, placeholder, onChange] = event.target;
+    let {
+      name: name,
+      content: value
+    } = event.target;
     if(name === "title"){
       setNote((prevValue)=>{
-        prevValue,
-        title: value
+        return {
+              ...prevValue,
+              title: value
+          };
       });
+    } else if(name==="content"){
+      setNote(
+        (prevValue) => {
+          console.log("Hi");
+          return {
+            ...prevValue,
+            content: value
+          };
+        }
+      );
     }
   }
 
   return (
     <div>
       <form>
-        <input name="title" placeholder="Title" onChange={handleChange}/>
-        <textarea name="content" placeholder="Take a note..." rows="3" onChange={handleChange}/>
+        <input name="title" placeholder="Title" onChange={handleChange} />
+        <textarea name="content" placeholder="Take a note..." rows="3" onChange={handleChange} />
         <button onClick={handleClick}>Add</button>
       </form>
     </div>
